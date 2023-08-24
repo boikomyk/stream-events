@@ -56,7 +56,6 @@ class SocailAuthController extends Controller
                 $newUser = User::updateOrCreate(['email' => $socialUser->email],[
                         'name' => $socialUser->name,
                         $provider_column=> $socialUser->id,
-                        'password' => encrypt('some_password')
                     ]);
     
                 Auth::login($newUser);    

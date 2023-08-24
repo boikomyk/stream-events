@@ -43,9 +43,11 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
+
             <div class="flex items-center justify-end mt-4">
-                <a class="ml-1 btn btn-primary" href="{{ route('auth.social', 'facebook') }}" style="margin-top: 0px !important;background: blue;color: #ffffff;padding: 5px;border-radius:7px;" id="btn-fblogin">
-                    <i class="fa fa-facebook-square" aria-hidden="true"></i> Login with Facebook
+                <a class="ml-1 btn btn-primary" href="{{ route('auth.social', 'facebook') }}"  id="btn-fblogin">
+                    {{-- <i class="fa fa-facebook-square" aria-hidden="true"></i> Login with Facebook --}}
+                    <img class="img" src="https://scontent.fyvr3-1.fna.fbcdn.net/v/t39.2365-6/294967112_614766366879300_4791806768823542705_n.png?_nc_cat=105&amp;ccb=1-7&amp;_nc_sid=ad8a9d&amp;_nc_ohc=pU_EYsiwr4cAX9VqwdP&amp;_nc_ht=scontent.fyvr3-1.fna&amp;oh=00_AfBiNbROcg0SQ0LvIEpcp4OJ6PQXet4Nawzun2LU1wnyzA&amp;oe=6500E164" width="200" alt="">
                 </a>
             </div>
             <div class="flex items-center justify-end mt-4 align-middle ">
@@ -53,6 +55,12 @@
                     <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
                 </a>
             </div>
+            <div class="card">
+
+            <hr/>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-black-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"><p>Register</p></a>
+                @endif
         </form>
     </x-authentication-card>
 </x-guest-layout>
