@@ -15,7 +15,8 @@ return new class extends Migration
          * @see \App\Models\Donation
          */
         Schema::create('donations', function (Blueprint $table) {
-            $table->id();   
+            $table->id();
+            $table->string('username');
             $table->float('amount')->default(0);
             $table->string('currency', 3)->default('USD');
             $table->text('message');

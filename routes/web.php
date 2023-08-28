@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocailAuthController;
-use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -33,4 +33,10 @@ Route::middleware([
 Route::controller(SocailAuthController::class)->group(function(){
     Route::get('auth/{provider}', 'redirectToSocial')->name('auth.social');
     Route::get('auth/{provider}/callback', 'handleSocialCallback');
+});
+
+// dashboard
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('dashboard/generate-fake-data', 'generateFakeData')->name('dashboard.generate-fake-data');
+    Route::get('dashboard/toogle-notification-read', 'toogleNotificationRead')->name('dashboard.toogle-notification-read');
 });

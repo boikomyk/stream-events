@@ -1,9 +1,9 @@
 <?php
 
+use App\Enums\NotificationRecordType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Enums\SubscriptionTier;
 
 return new class extends Migration
 {
@@ -13,18 +13,18 @@ return new class extends Migration
     public function up(): void
     {
         /**
-         * @see \App\Models\Subscriber
+         * @see \App\Models\NotificationMapItem
          */
-        Schema::create('subscribers', function (Blueprint $table) {
+        Schema::create('notification_map_items', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->enum(
-                    'subscription_tier',
-                    array_column(SubscriptionTier::cases(), 'value')
-                )
-                ->default(SubscriptionTier::TIER_1->value);
+            $table->integer('record_id');
+            $table->timestamp('record_created_at');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->timestamps();   
+            $table->enum(
+                'record_type',
+                array_column(NotificationRecordType::cases(), 'value')
+            );
+            $table->timestamps();
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subscribers');
+        Schema::dropIfExists('notification_map_items');
     }
 };

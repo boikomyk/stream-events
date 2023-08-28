@@ -18,6 +18,7 @@ return new class extends Migration
         Schema::create('merch_sales', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('username');
             $table->integer('amount');
             $table->float('price');
             $table->string('currency', 3)->default('USD');

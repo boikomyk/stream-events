@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        /**
+         * @see \App\Models\User
+         */
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');

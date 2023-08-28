@@ -2,26 +2,28 @@
 
 namespace App\Models;
 
-use App\Models\Traits\ReadableTrait;
+use App\Enums\NotificationRecordType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-/**
- * @property-read int $id // column
- * @property string $name // column
- */
-class Follower extends Model
+class NotificationMapItem extends Model
 {
     use HasFactory;
-    use ReadableTrait;
 
     protected $fillable = [
-        'name'
+        'record_id',
+        'record_type',
+        'record_created_at'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'record_type' => NotificationRecordType::class,
+        'record_created_at' => 'datetime',
+    ];
 }
